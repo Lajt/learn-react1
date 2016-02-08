@@ -1,7 +1,32 @@
-import React from 'react';
+// import React then create new variable Component: (Component = React.Component)
+import React, { Component } from 'react';
 
-const SearchBar = () => {
-  return <input />;
-};
+// ES6 Class
+class SearchBar extends Component {
+  // aditional note: if component change its state, component will rerender itself
+  // each instance of component has its own state
 
+  // called auto if new instance is created
+  constructor(props){
+    // call parent method(Component)
+    super(props);
+
+    this.state = { term: '' };
+  }
+
+  //you always need render method and return some jsx
+  render(){
+    // controlled component example, every time rerender it takes value from state
+    return (
+      <div>
+        <input
+          value={this.state.term}
+          onChange={event => this.setState({ term: event.target.value })} />
+      </div>
+      );
+  }
+
+
+}
+// typical export to use this component in other files
 export default SearchBar;
