@@ -19,19 +19,24 @@ class App extends Component{
       selectedVideo: null 
     };
 
-    YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+    this.videoSearch('surfboards');
+
+  }
+  
+  videoSearch(term){
+    YTSearch({key: API_KEY, term: term || 'hello world'}, (videos) => {
       // this.setState({videos : videos }); ES6 only works if key and value is the same
       this.setState({ 
         videos: videos, 
         selectedVideo: videos[0] 
       });
     });
-
   }
+  
   render(){
     return(
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList 
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}
