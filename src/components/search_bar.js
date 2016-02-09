@@ -18,7 +18,7 @@ class SearchBar extends Component {
   render(){
     // controlled component example, every time rerender it takes value from state
     return (
-      <div>
+      <div className="search-bar">
         <input
           value={this.state.term}
           onChange={event => this.setState({ term: event.target.value })} />
